@@ -10,19 +10,21 @@ source:
   sha256: e448683912089ada8d3af78c260687e1b5bfd0381430f8b52f7ff2a931166efa
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
     - pip
-    - python
+    - python {{ python_min }}
   run:
     - flask >=0.10.1
-    - python
+    - python >={{ python_min }}
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - server_timing
 
